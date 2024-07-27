@@ -36,6 +36,7 @@ Create a web application that displays a list of companies and their details, in
         - Integrated google map directions to get directions to that location. This is available in the map marker popup as well as in the list item
 3. Responsive design
     - Used cdd grids and wrote media queries to maintain a responsive design
+- EXCEPTION: if locations are filtered, find closest to me feature still finds closest location from all locations
  
 ## Start the App
 - Build and start all containers in one go(run in root directory) : `docker-compose up --build --force-recreate`

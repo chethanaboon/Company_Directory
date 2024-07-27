@@ -20,22 +20,32 @@ const CompanyDetails = () => {
   });
   const [userLocation, setUserLocation] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFindingClosest, setIsFindingClosest] = useState(false);
 
   useEffect(() => {
     fetchCompanyDetails();
   }, [id]);
 
+
   const fetchCompanyDetails = async () => {
-    const response = await axios.get(`http://localhost:8000/api/companies/${id}/`);
-    const companyData = response.data;
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`http://localhost:8000/api/companies/${id}/`);
+      const companyData = response.data;
 
-    const locationsWithRegion = await Promise.all(companyData.locations.map(async (location) => {
-      const region = await getRegionFromCoordinates(location.latitude, location.longitude);
-      return { ...location, region };
-    }));
+      const locationsWithRegion = await Promise.all(companyData.locations.map(async (location) => {
+        const region = await getRegionFromCoordinates(location.latitude, location.longitude);
+        return { ...location, region };
+      }));
 
-    setCompany({ ...companyData, locations: locationsWithRegion });
-    setMapCenter([companyData.latitude, companyData.longitude]);
+      setCompany({ ...companyData, locations: locationsWithRegion });
+      setMapCenter([companyData.latitude, companyData.longitude]);
+    } catch (error) {
+      console.error("Error fetching company details:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLocationClick = (lat, lng, location) => {
@@ -69,32 +79,40 @@ const CompanyDetails = () => {
     );
   });
 
-  // find closest location to me if location is enabled in browser
   const findClosestLocation = () => {
+    setIsFindingClosest(true);
     if (!userLocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserLocation([position.coords.latitude, position.coords.longitude]);
+          findClosest([position.coords.latitude, position.coords.longitude]);
         },
         (error) => {
           console.error("Error getting user location:", error);
           alert("Please turn on your location");
+          setIsFindingClosest(false);
         }
       );
     } else {
-      const closest = company.locations.reduce((closest, location) => {
-        const distance = calculateDistance(userLocation[0], userLocation[1], location.latitude, location.longitude);
-        return distance < closest.distance ? { location, distance } : closest;
-      }, { location: null, distance: Infinity });
-
-      if (closest.location) {
-        handleLocationClick(closest.location.latitude, closest.location.longitude, location);
-        alert(`Closest location: ${closest.location.name}`);
-      }
+      findClosest(userLocation);
     }
   };
 
-  if (!company) return <div>Loading...</div>;
+  const findClosest = (userLoc) => {
+    const closest = company.locations.reduce((closest, location) => {
+      const distance = calculateDistance(userLoc[0], userLoc[1], location.latitude, location.longitude);
+      return distance < closest.distance ? { location, distance } : closest;
+    }, { location: null, distance: Infinity });
+
+    if (closest.location) {
+      handleLocationClick(closest.location.latitude, closest.location.longitude, closest.location);
+      alert(`Closest location: ${closest.location.name}`);
+    }
+    setIsFindingClosest(false);
+  };
+  
+  if (isLoading) return <div>Loading...</div>;
+  if (!company) return <div>Company not found</div>;
 
   return (
     <div className="company-details">
@@ -130,7 +148,10 @@ const CompanyDetails = () => {
               <option key={key} value={key}>{value.name}</option>
             ))}
           </select>
-          <button onClick={findClosestLocation}>Find Closest to Me</button>
+          {/* <button onClick={findClosestLocation}>Find Closest to Me</button> */}
+          <button onClick={findClosestLocation} disabled={isFindingClosest}>
+            {isFindingClosest ? 'Finding...' : 'Find Closest to Me'}
+          </button>
         </div>
 
         <div className="locations-grid">
