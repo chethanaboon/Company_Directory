@@ -131,3 +131,52 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# setting up logging: only error logs in console, all other logs in debug.log
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        # uncomment to get all logs in console
+        # 'console': {
+        #     'level': 'DEBUG',
+        #     'class': 'logging.StreamHandler',
+        #     'formatter': 'simple',
+        # },
+        'console_errors': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'debug.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            # add 'console' in handler to get all logs in console
+            'handlers': ['console_errors', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        '': {
+            # add 'console' in handler to get all logs in console
+            'handlers': ['console_errors', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

@@ -8,6 +8,9 @@ class Company(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
 
+    def __str__(self):
+        return self.name
+
 class Location(models.Model):
     location_id = models.IntegerField(primary_key=True)
     company = models.ForeignKey(Company, related_name='locations', on_delete=models.CASCADE)
@@ -15,3 +18,6 @@ class Location(models.Model):
     address = models.TextField()
     latitude = models.FloatField()
     longitude = models.FloatField()
+
+    def __str__(self):
+        return self.name

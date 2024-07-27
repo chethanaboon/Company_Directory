@@ -1,10 +1,14 @@
+# Company Directory
+
 Hi Guys!
 
-Let make our fullstack app :)
+Let make our fullstack Company Directory app :)
 
 I am using Django REST for the backend and ReactJS for the frontend.
 
-# ComapnyDirectory
+NOTE: This README.md provides an overall documentation including how to start the app. For detailed backend and frontend documnetation, please read README files in the specific folders:
+- Backend Documentation : [Backend Readme](./backend/README.md)
+- Frontend Documentation : [Frontend Readme](./frontend/README.md)
 
 ## Project Description:
 
@@ -13,19 +17,36 @@ Create a web application that displays a list of companies and their details, in
 ## Key Features:
 1. Map user interface
 
+## Start the App
+- Build and start all containers in one go(run in root directory) : `docker-compose up --build --force-recreate`
+    - Backend and frontend tests will run and results will be shown in console
+    - Frontend will start at :  http://localhost:5173
+    - Backend will start at : http://localhost:8000
+
+### Other Useful Docker commands:
+- Start all containers : `docker-compose up`
+- Check if images are up : `docker ps`
+- All services (from docker-compose.yml) : 
+    - backend
+    - frontend
+    - backend-test
+    - frontend-test
+- Start a specific container : `docker-compose run <service_name>`
+- Login to the container:
+    - get container_id from `docker ps`
+    - run `exec -it <container_id> bash`
+- Check backend logs
+    - Login to the backend container
+    - run `tail -f debug.log`
+
+## Test Coverage
+- Backend: Provided 100% test coverage as the APIs are limited
+- Frontend: Around 70% test coverage
+
 ## Developer Details
 - Name : Chethana Benny
 - Email : benny.c@northeastern.edu
 - Phone : +18573950964
-- Github : 
-- Linkedin :
+- Github : https://github.com/chethanaboon/Company_Directory
+- Linkedin : [www.linkedin.com/in/chethana-benny](https://www.linkedin.com/in/chethana-benny/)
 
-### Docker commands:
-1. Build without cache and bring images up:
-    `docker-compose up --build --force-recreate`
-2. Bring images up
-    `docker-compose up`
-3. Check if images up
-    `docker ps`
-3. Frontend:  http://localhost:5173
-4. Backend: http://localhost:8000
