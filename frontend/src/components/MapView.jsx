@@ -11,7 +11,7 @@ const MapView = ({ center, zoom, locations, getDirections, mapRef }) => (
           <Popup>
             <div>
               <h3>{location.name}</h3>
-              <p>{location.address}</p>
+              <p><i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{location.address}</p>
               <p>{location.latitude} Lat | {location.longitude} Long</p>
               <p>Region: {location.region}</p>
               <button onClick={() => getDirections(location.latitude, location.longitude)}>

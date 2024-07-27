@@ -110,7 +110,7 @@ const CompanyDetails = () => {
     }
     setIsFindingClosest(false);
   };
-  
+
   if (isLoading) return <div>Loading...</div>;
   if (!company) return <div>Company not found</div>;
 
@@ -162,7 +162,7 @@ const CompanyDetails = () => {
               onClick={() => handleLocationClick(location.latitude, location.longitude, location)}
             >
               <h3>{location.name}</h3>
-              <p>{location.address}</p>
+              <p><i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{location.address}</p>
               <p>{location.latitude} Lat | {location.longitude} Lon</p>
               <button onClick={(e) => {
                 e.stopPropagation();

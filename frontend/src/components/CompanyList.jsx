@@ -35,7 +35,7 @@ const CompanyList = () => {
         {filteredCompanies.map(company => (
           <Link to={`/company/${company.company_id}`} key={company.company_id} className="company-card">
             <h2>{company.name}</h2>
-            <p>{company.address}</p>
+            <p><i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{company.address}</p>
           </Link>
         ))}
       </div>

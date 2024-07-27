@@ -115,6 +115,7 @@ input[type="text"], .filters input, .filters select, .filters button {
 .locations-container {
   display: flex;
   gap: 20px;
+  margin-top: 50px;
 }
 
 .filters {
