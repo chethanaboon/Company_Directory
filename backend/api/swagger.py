@@ -3,6 +3,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 
+# to dynamically create swagger and redoc api docs
 schema_view = get_schema_view(
     openapi.Info(
         title="Company Directory API",

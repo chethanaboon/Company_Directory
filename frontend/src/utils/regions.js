@@ -5,6 +5,7 @@ export const regions = {
     APAC: { name: "Asia-Pacific" }
 };
 
+// determine which business region a country falls in
 export const determineRegion = (country) => {
     const naCountries = ["United States", "Canada"];
     const latamCountries = ["Mexico", "Brazil", "Argentina", "Colombia", "Peru", "Chile", "Venezuela", "Ecuador", "Guatemala", "Cuba"];

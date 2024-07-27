@@ -53,3 +53,29 @@ pip freeze > requirements.txt
 
 - **Swagger**: `http://127.0.0.1:8000/api/swagger/`
 - **Redoc**: `http://127.0.0.1:8000/api/redoc/#tag/companies`
+
+## Folder Structure
+    backend/
+    ├── api/
+    │ ├── management/commands
+    │ │ └── import_csv_data.py
+    │ ├── migrations/
+    │ ├── tests/
+    │ │  └── ... all tests
+    │ ├── admin.py
+    │ ├── apps.py
+    │ ├── models.py
+    │ ├── serializers.py
+    │ ├── swagger.py
+    │ ├── urls.py
+    │ └── views.py
+    ├── backend/
+    │ ├── settings.py
+    │ ├── urls.py
+    │ └── ... other django files
+    ├── companies.csv
+    ├── Dockerfile
+    ├── locations.csv
+    ├── manage.py
+    ├── README.md
+    └── requirements.txt

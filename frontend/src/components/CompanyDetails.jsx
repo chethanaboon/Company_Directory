@@ -51,6 +51,7 @@ const CompanyDetails = () => {
     }
   };
 
+  // add google map directions
   const getDirections = (lat, lng) => {
     const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     window.open(url, '_blank');
@@ -68,6 +69,7 @@ const CompanyDetails = () => {
     );
   });
 
+  // find closest location to me if location is enabled in browser
   const findClosestLocation = () => {
     if (!userLocation) {
       navigator.geolocation.getCurrentPosition(

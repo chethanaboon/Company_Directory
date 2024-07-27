@@ -3,6 +3,7 @@ import axios from 'axios';
 import { determineRegion } from './regions'
 
 
+// find distance between any two points on earth given their coordinates
 export const calculateDistance = (lat1, lon1, lat2, lon2) => { // using Haversine formula
     const R = 6371; // Earth's radius in km
     const dLat = deg2rad(lat2 - lat1);
@@ -19,6 +20,7 @@ const deg2rad = (deg) => {
     return deg * (Math.PI / 180);
 };
 
+// reverse geocoding to determine a location's region based on its coordinates using nominatim open api
 export const getRegionFromCoordinates = async (lat, lon) => {
     try {
         const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);

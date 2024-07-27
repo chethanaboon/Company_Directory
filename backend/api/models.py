@@ -13,6 +13,7 @@ class Company(models.Model):
 
 class Location(models.Model):
     location_id = models.IntegerField(primary_key=True)
+    # creating a reverse relation from company to locatios
     company = models.ForeignKey(Company, related_name='locations', on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     address = models.TextField()

@@ -15,11 +15,31 @@ NOTE: This README.md provides an overall documentation including how to start th
 Create a web application that displays a list of companies and their details, including multiple possible locations. The application should have a Python backend API, a React frontend with a two-page structure and map integration, and be containerized using Docker.
 
 ## Key Features:
-1. Map user interface
-
+1. Page 1:
+    - Shows a grid of all companies from db as cards. Each card shows name and main location's address
+    - Dynamic search bar: searches for company by name on key press. Do not have to click enter
+    - On click of company card, redirects to page 2
+2. Page 2:
+    - Map component
+        - Integrated a map component using leaflet
+        - The map shows markers of all locations of the company
+        - On page landing, the map would be focused on the main location. But on zoom out you can see all other locations.
+        - On click of marker, a popup opens showing name, address, coordinates and region of that location.
+    - All locations List
+        - A list of all locations are shown. Each list displays name, address, coordinates and region of that location.
+        - On click of a list item, it will get selected and the page will scroll up to the map to show the selected location in focus in the map.
+    - Filters
+        - Search by location name filter: dynamic location name search similar to company search in page 1
+        - Filter by region: Used reverse geo coding to find which business regions(EMEA, NA, LATAM, APAC) the locations fall into. On click of filter dropdown option, the locations in that region would be diplsyed in the list. NOTE: All the sample data fall into the same region NA.
+        - Closest to me: If user enables broswer location services, this feature would fing the nearest location to that user.  
+    - Directions
+        - Integrated google map directions to get directions to that location. This is available in the map marker popup as well as in the list item
+3. Responsive design
+    - Used cdd grids and wrote media queries to maintain a responsive design
+ 
 ## Start the App
 - Build and start all containers in one go(run in root directory) : `docker-compose up --build --force-recreate`
-    - Backend and frontend tests will run and results will be shown in console
+    - Backend and frontend tests will run and results will be shown in console. NOTE: added tests as services for ease of running. In prod, we can remove these containers.
     - Frontend will start at :  http://localhost:5173
     - Backend will start at : http://localhost:8000
 
@@ -41,7 +61,15 @@ Create a web application that displays a list of companies and their details, in
 
 ## Test Coverage
 - Backend: Provided 100% test coverage as the APIs are limited
-- Frontend: Around 70% test coverage
+- Frontend: Around 50% test coverage
+
+## Folder Structure
+    company_directory_project/
+    ├── backend/
+    ├── frontend/
+    ├── .gitignore
+    ├── docker-compose.yml
+    └── README.md
 
 ## Developer Details
 - Name : Chethana Benny

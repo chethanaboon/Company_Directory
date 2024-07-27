@@ -13,6 +13,35 @@ npm run dev
 ```
 
 ### Run Test Suite
-`npm run test`
+- run all : `npm run test`
+- run individually : `npm test -- <test_file_name>`
+
+## Folder Structure
+    frontend/
+    ├── public/
+    │ └── image.png
+    ├── src/
+    │ ├── assets/
+    │ ├── components/
+    │ │  ├── CompanyDetails.jsx
+    │ │  ├── CompanyList.jsx
+    │ │  └── MapView.jsx
+    │ ├── tests/
+    │ │  └── ... all tests
+    │ ├── utils
+    │ │   ├── geoUtils.js
+    │ │   └── regions.js
+    │ ├── App.css
+    │ ├── index.css
+    │ └── main.jsx
+    ├── package-lock.json
+    ├── Dockerfile
+    ├── index.html
+    ├── jest.config.cjs
+    ├── setupTests.js
+    ├── vite.config.js
+    ├── .gitignore
+    ├── README.md
+    └── package.json
 
 
