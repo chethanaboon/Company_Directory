@@ -1,0 +1,52 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Dependency directories
+node_modules/
+venv/
+*.egg-info/
+__pycache__/
+
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+
+# Environment files
+.env
+
+# Docker files
+docker-compose.override.yml
+
+# Coverage reports
+.coverage
+*.cover
+nosetests.xml
+coverage.xml
+*.log
+
+# IDE/editor configurations
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# React build output
+build/
+dist/
+
+# Django database
+db.sqlite3
+
+# Django migrations
+migrations/
+
+# Django static files
+staticfiles/
+
+# Django media files
+media/

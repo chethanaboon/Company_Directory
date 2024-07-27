@@ -1,0 +1,201 @@
+:root {
+  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --line-height: 1.5;
+  --font-weight: 400;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --charcoal-color: #122620;
+  --gold-color: #D6AD60;
+  --tan-color: #B68D40;
+  --cream-color: #F4EBD0;
+  --card-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  --transition: transform 0.3s ease;
+  --border-radius: 8px;
+  --card-padding: 20px;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--charcoal-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+a {
+  font-weight: 500;
+  color: var(--gold-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--tan-color);
+}
+
+.company-list, .company-details {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+input[type="text"], .filters input, .filters select, .filters button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+
+.company-list input{
+  margin-bottom: 50px;
+  width: 50%;
+}
+
+.company-list h1{
+  margin-bottom: 50px;
+  color: var(--gold-color);
+}
+
+.company-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 50px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.company-card {
+  background-color: var(--cream-color);
+  border-radius: var(--border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.company-card:hover, .location-card:hover {
+  transform: translateY(-5px);
+}
+
+.back-button {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: var(--tan-color);
+  text-decoration: none;
+  border-radius: 5px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  
+}
+
+.back-button > a{
+  color:var(--cream-color);
+}
+
+.back-button:hover{
+  background-color: var(--gold-color);
+}
+
+.company-details > h1, .company-details > p{
+  color: var(--gold-color);
+}
+
+.map-container {
+  margin-bottom: 30px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.locations-container {
+  display: flex;
+  gap: 20px;
+}
+
+.filters {
+  flex: 0 0 250px;
+}
+
+.locations-grid {
+  flex: 1;
+  display: grid;
+  gap: 20px;
+}
+
+.location-card {
+  background-color: var(--cream-color);
+  border-radius: var(--border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 1fr; 
+  grid-auto-flow: column; 
+  gap: 10px; 
+}
+
+.location-card.selected {
+  border: 6px solid var(--tan-color);
+}
+
+.location-card > h3, .location-card > p{
+  color: var(--tan-color);
+  margin: auto;
+}
+
+.location-card button {
+  background-color: var(--tan-color);
+  color: var(--cream-color);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: auto;
+  padding: 10px;
+}
+
+.location-card button:hover {
+  background-color: var(--gold-color);
+}
+
+.filters button {
+  background-color: var(--tan-color);
+  color: var(--cream-color);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+  background-color: var(--gold-color);
+}
+
+
+@media (max-width: 768px) {
+  .company-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .locations-container {
+    flex-direction: column;
+  }
+
+  .filters {
+    flex: none;
+    width: 100%;
+  }
+
+  .locations-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .location-card {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+  }
+}
