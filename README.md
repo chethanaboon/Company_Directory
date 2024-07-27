@@ -14,6 +14,12 @@ NOTE: This README.md provides an overall documentation including how to start th
 
 Create a web application that displays a list of companies and their details, including multiple possible locations. The application should have a Python backend API, a React frontend with a two-page structure and map integration, and be containerized using Docker.
 
+## Start the App
+- Build and start all containers in one go(run in root directory) : `docker-compose up --build --force-recreate`
+    - Backend and frontend tests will run and results will be shown in console. NOTE: added tests as services for ease of running. In prod, we can remove these containers.
+    - Frontend will start at :  http://localhost:5173
+    - Backend will start at : http://localhost:8000
+
 ## Key Features:
 1. Page 1:
     - Shows a grid of all companies from db as cards. Each card shows name and main location's address
@@ -37,12 +43,6 @@ Create a web application that displays a list of companies and their details, in
 3. Responsive design
     - Used cdd grids and wrote media queries to maintain a responsive design
 - EXCEPTION: if locations are filtered, find closest to me feature still finds closest location from all locations
- 
-## Start the App
-- Build and start all containers in one go(run in root directory) : `docker-compose up --build --force-recreate`
-    - Backend and frontend tests will run and results will be shown in console. NOTE: added tests as services for ease of running. In prod, we can remove these containers.
-    - Frontend will start at :  http://localhost:5173
-    - Backend will start at : http://localhost:8000
 
 ### Other Useful Docker commands:
 - Start all containers : `docker-compose up`
