@@ -14,6 +14,7 @@ COPY . .
 COPY companies.csv .
 COPY locations.csv .
 
+RUN python manage.py migrate
 # Run the management command to import CSV data
 RUN python manage.py import_csv_data
 
