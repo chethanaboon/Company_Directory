@@ -5,6 +5,7 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
+    command: sh -c "python manage.py migrate"
     networks:
       - app-network
 
